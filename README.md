@@ -14,15 +14,40 @@ npm install --save rj-form
 
 ```jsx
 import React, { Component } from 'react'
-
-import MyComponent from 'rj-form'
+import RJForm from 'rj-form'
 
 class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
+
+    inputData = {
+    fields: [ {
+      key: 'email',
+      placeholder: 'Email',
+      type: 'email'
+    },
+  
+    {
+      key: 'password',
+      placeholder: 'Password',
+      type: 'password'
+    },
+  
+    {
+      key: 'button',
+      text: 'Submit',
+      type: 'submit'
+    }],
+  };
+  
+    handleSubmit(value) {
+      console.log(value);
+    }
+  
+  
+    render () {
+      return (
+        <RJForm handleSubmit={this.handleSubmit} formData={this.inputData}></RJForm>
+      )
+    }
 }
 ```
 

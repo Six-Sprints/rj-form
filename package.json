@@ -1,6 +1,6 @@
 {
   "name": "rj-form",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A react library for creating forms using a JSON schema",
   "author": "drudrapaul",
   "license": "MIT",
@@ -24,7 +24,10 @@
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "informed": "^2.11.9",
+    "bootstrap": "^4.3.1",
+    "react-select": "^3.0.8"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -57,5 +60,10 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "informed": "^2.11.9",
+    "react-select": "^3.0.8"
+  }
 }
