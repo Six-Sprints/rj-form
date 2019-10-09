@@ -14,8 +14,8 @@ const Button = ({
 }) => {
 
     return (
-        <div className="my-4">
-            <button type={type} className={"btn btn-primary " + className} style={buttonStyle} {...rest}>
+        <div className={className}>
+            <button type={type} className={"btn btn-primary "} style={buttonStyle} {...rest}>
                 {text}
             </button>
         </div>

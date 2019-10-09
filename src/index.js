@@ -6,7 +6,7 @@ import TextInput from './form/text-input';
 import SelectInput from './form/select-input';
 import { AppConstants } from './util/app-constants';
 import Button from './form/button';
-
+import TextAreaInput from './form/text-area';
 
 
 class RJForm extends Component {
@@ -22,38 +22,24 @@ class RJForm extends Component {
   }
 
 
+
   render() {
-    const {fields} = this.props.formData;
+    const {fields, styles} = this.props.formData;
     return (
-      <Form  onSubmit={this.props.handleSubmit}>
-        <div className="m-2">
+      <Form validateFields={this.props.validateFields} onSubmit={this.props.handleSubmit}>
+        <div className={styles.formClassName}>
           {fields.map((item, i) => {
-            if (item.type === AppConstants.FIELD_TYPE.TEXT) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className} validateOnBlur validateOnChange />);
+            if (item.type === AppConstants.FIELD_TYPE.TEXT || item.type === AppConstants.FIELD_TYPE.EMAIL || item.type === AppConstants.FIELD_TYPE.PASSWORD || item.type === AppConstants.FIELD_TYPE.PHONE || item.type === AppConstants.FIELD_TYPE.RADIO || item.type === AppConstants.FIELD_TYPE.CHECKBOX) {
+              return (<TextInput  key={i} required={item.required} field={item.key} hideLabel={item.hideLabel} type={item.type} placeholder={item.placeholder} className={item.className || styles.fieldClassName} validateOnBlur validateOnChange />);
             } 
-            if(item.type === AppConstants.FIELD_TYPE.EMAIL) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className}  validateOnBlur validateOnChange />);
-            }
-            if(item.type === AppConstants.FIELD_TYPE.PASSWORD) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className}  validateOnBlur validateOnChange />);
-            }
-            if(item.type === AppConstants.FIELD_TYPE.PHONE) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className}  validateOnBlur validateOnChange />);
-            }
-            if(item.type === AppConstants.FIELD_TYPE.RADIO) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className}  validateOnBlur validateOnChange />);
-            }
-            if(item.type === AppConstants.FIELD_TYPE.CHECKBOX) {
-              return (<TextInput key={i} field={item.key} type={item.type} placeholder={item.placeholder} className={item.className} validateOnBlur validateOnChange />);
-            }
             if(item.type === AppConstants.FIELD_TYPE.SELECT) {
-              return <SelectInput key={i} field={item.key} placeholder={item.placeholder} options={item.options} />
+              return <SelectInput key={i} required={item.required} field={item.key} placeholder={item.placeholder} className={item.className || styles.fieldClassName} options={item.options} />
             }
-            if(item.type === AppConstants.FIELD_TYPE.SUBMIT) {
-              return <Button key={i} text={item.text} type={item.type} className={item.className} buttonStyle={item.buttonStyle}   />
+            if(item.type === AppConstants.FIELD_TYPE.TEXT_AREA) {
+              return <TextAreaInput key={i} required={item.required} text={item.text} type={item.type} className={item.className}    />
             }
-            if(item.type === AppConstants.FIELD_TYPE.BUTTON) {
-              return <Button key={i} text={item.text} type={item.type} className={item.className} buttonStyle={item.buttonStyle}   />
+            if(item.type === AppConstants.FIELD_TYPE.SUBMIT || item.type === AppConstants.FIELD_TYPE.BUTTON) {
+              return <Button key={i} required={item.required} text={item.text} type={item.type} className={item.className} buttonStyle={item.buttonStyle}   />
             }
           })}
         </div>

@@ -11,12 +11,13 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
     selectedVal = options.filter(option => option.value === fieldState.value);
   }
   return (
-    <div className="flex-r">
-      <div className="label-cont">
+    <div className="">
+      <div className={props.labelClass}>
         <label>{props.placeholder}</label>
       </div>
       <div style={{ position: "relative", width: "100%" }}>
         <Select
+          className={props.className}
           value={selectedVal}
           onChange={option => {
             setValue(option && option.value);

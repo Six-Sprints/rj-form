@@ -2,7 +2,6 @@ export const AppConstants = {
     FIELD_TYPE : {
         SELECT : 'select',
         TEXT: 'text',
-        TEXT_AREA: 'text-area',
         EMAIL: 'email',
         PASSWORD: 'password',
         PHONE: 'tel',

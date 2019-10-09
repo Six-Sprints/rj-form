@@ -1,44 +1,37 @@
-import React from 'react'
+import React from "react";
 import { asField } from "informed";
 
-
-const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
+const TextAreaInput = asField(({ fieldState, fieldApi, ...props }) => {
   const {
     required,
     onChange,
     onBlur,
     onFocus,
-    initialValue,
+    hideTick,
+    inlineImgStyle,
     inlineErrorStyle,
+    initialValue,
     dontUpdate,
-    labelClass,
     className,
     forwardedRef,
     format,
-    hideLabel,
     ...rest
   } = props;
   const { error, value, touched } = fieldState;
   const { setValue, setTouched } = fieldApi;
   let ref = {};
   return (
-    <div className="my-4">
-      {!hideLabel  && (
-        <div className={labelClass}>
-          <label>
-            {props.placeholder}{" "}
-            {required ? <span className="required">*</span> : ""}
-          </label>
-        </div>
-      )}
-
-      <div>
-        <input
-          type={props.type}
+    <div className="flex-r">
+      <div style={{ position: "relative", width: "100%", height: "45vh" }}>
+        <textarea
           ref={refer => {
             ref = refer;
+            if (forwardedRef) {
+              forwardedRef(refer);
+            }
           }}
-          className={props.type === "radio" || props.type === "checkbox" ? "" : className || "form-control col-sm"}
+          style={{ width: "100%", height: "100%", fontSize: 16 }}
+          className={className || "theme login"}
           value={value || ""}
           {...rest}
           onChange={e => {
@@ -66,7 +59,6 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
             }
           }}
         />
-     
         {touched && error && (
           <span
             onClick={() => {
@@ -78,9 +70,10 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
             {error}
           </span>
         )}
+        
       </div>
     </div>
   );
 });
 
-export default TextInput;
+export default TextAreaInput;
