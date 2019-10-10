@@ -14,11 +14,11 @@ const Button = ({
 }) => {
 
     return (
-        <div className={className}>
-            <button type={type} className={"btn btn-primary "} style={buttonStyle} {...rest}>
-                {text}
-            </button>
-        </div>
+        <button type={type} className={className || "btn btn-primary"} style={buttonStyle} {...rest}>
+            {isLoading ?
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> :
+                <span>{text}</span>}
+        </button>
     );
 };
 

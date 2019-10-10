@@ -25,6 +25,7 @@ class RJForm extends Component {
 
   render() {
     const {fields, styles} = this.props.formData;
+    const  isLoading  = this.props.isLoading;
     return (
       <Form getApi={this.props.setFormApi} validateFields={this.props.validateFields} onSubmit={this.props.handleSubmit}>
         <div className={styles.formClassName}>
@@ -39,7 +40,7 @@ class RJForm extends Component {
               return <TextAreaInput key={i} required={item.required} text={item.text} type={item.type} className={item.className}    />
             }
             if(item.type === AppConstants.FIELD_TYPE.SUBMIT || item.type === AppConstants.FIELD_TYPE.BUTTON) {
-              return <Button key={i} required={item.required} text={item.text} type={item.type} className={item.className} buttonStyle={item.buttonStyle}   />
+              return <Button isLoading={isLoading} key={i} required={item.required} text={item.text} type={item.type} className={item.className} buttonStyle={item.buttonStyle}   />
             }
           })}
         </div>

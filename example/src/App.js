@@ -4,6 +4,8 @@ import { isEmail, isRequired, isPasswordAndRequired } from './util/validations';
 
 export default class App extends Component {
 
+  state = { isLoading: false}
+
 
   setFormApi = api => {
     this.formApi = api;
@@ -12,6 +14,7 @@ export default class App extends Component {
 
   handleSubmit =  value => {
     console.log(value);
+    this.setState({isLoading:true});
     this.formApi.reset();
   }
 
@@ -31,9 +34,10 @@ export default class App extends Component {
 
 
   render() {
+    let isLoading = this.state.isLoading;
     return (
       <div>
-        <RJForm  setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
+        <RJForm  isLoading={isLoading} setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
       </div>
     )
   }
