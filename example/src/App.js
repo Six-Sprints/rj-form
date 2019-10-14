@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import RJForm from 'rj-form'
+import React, { Component } from 'react';
+import RJForm from 'rj-form';
 import { isEmail, isRequired, isPasswordAndRequired } from './util/validations';
 
 export default class App extends Component {

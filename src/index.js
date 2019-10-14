@@ -51,4 +51,5 @@ class RJForm extends Component {
 }
 
 
+export const LoadingButton = Button;
 export default RJForm;
