@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RJForm from 'rj-form';
+import RJForm, {LoadingButton} from 'rj-form';
 import { isEmail, isRequired, isPasswordAndRequired } from './util/validations';
 
 export default class App extends Component {
@@ -32,11 +32,16 @@ export default class App extends Component {
     };
   };
 
+  handleClick  = () => {
+    console.log("Click");
+  }
+
 
   render() {
     let isLoading = this.state.isLoading;
     return (
       <div>
+        <LoadingButton handleClick={this.handleClick} text="Button"></LoadingButton>
         <RJForm  isLoading={isLoading} setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
       </div>
     )

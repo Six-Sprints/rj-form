@@ -10,11 +10,12 @@ const Button = ({
     className,
     style,
     buttonStyle,
+    handleClick,
     ...rest
 }) => {
 
     return (
-        <button type={type} className={className || "btn btn-primary"} style={buttonStyle} {...rest}>
+        <button onClick={handleClick} type={type} className={className || "btn btn-primary"} style={buttonStyle} {...rest}>
             {isLoading ?
                 <span className="spinner-border spinner-border-sm"  aria-hidden="true"></span> :
                 <span>{text}</span>}
