@@ -27,7 +27,7 @@ class RJForm extends Component {
     const {fields, styles} = this.props.formData;
     const  isLoading  = this.props.isLoading;
     return (
-      <Form getApi={this.props.setFormApi} validateFields={this.props.validateFields} onSubmit={this.props.handleSubmit}>
+      <Form getApi={this.props.setFormApi} validateFields={this.props.validateFields} onChange={this.props.handleChange} onSubmit={this.props.handleSubmit}>
         <div className={styles.formClassName}>
           {fields.map((item, i) => {
             if (item.type === AppConstants.FIELD_TYPE.TEXT || item.type === AppConstants.FIELD_TYPE.EMAIL || item.type === AppConstants.FIELD_TYPE.PASSWORD || item.type === AppConstants.FIELD_TYPE.PHONE || item.type === AppConstants.FIELD_TYPE.RADIO || item.type === AppConstants.FIELD_TYPE.CHECKBOX) {

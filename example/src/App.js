@@ -36,13 +36,17 @@ export default class App extends Component {
     console.log("Click");
   }
 
+  onChange = (val) => {
+    console.log(val);
+  }
+
 
   render() {
     let isLoading = this.state.isLoading;
     return (
       <div>
         <LoadingButton handleClick={this.handleClick} text="Button"></LoadingButton>
-        <RJForm  isLoading={isLoading} setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
+        <RJForm handleChange={this.onChange} isLoading={isLoading} setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
       </div>
     )
   }
