@@ -36,19 +36,30 @@ class Example extends Component {
   };
 
   
-    handleSubmit(value) {
+  handleSubmit(value) {
       console.log(value);
-    }
+  }
+
+  handleChange = (val) => {
+    console.log(val);
+  }
   
   
-    render () {
+  render () {
       return (
-        <RJForm  setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={inputData}></RJForm>
+         <RJForm 
+        handleChange={this.handleChange} 
+        isLoading={isLoading} 
+        setFormApi={this.setFormApi} 
+        validateFields={this.validateFields} 
+        handleSubmit={this.handleSubmit} 
+        formData={inputData}>
+        </RJForm>
       )
-    }
+  }
 }
 
-const DATA = {
+const inputData = {
   styles: {
     formClassName: 'column m-2',
     fieldClassName: 'form-control col-md-8'

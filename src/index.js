@@ -31,7 +31,7 @@ class RJForm extends Component {
         <div className={styles.formClassName}>
           {fields.map((item, i) => {
             if (item.type === AppConstants.FIELD_TYPE.TEXT || item.type === AppConstants.FIELD_TYPE.EMAIL || item.type === AppConstants.FIELD_TYPE.PASSWORD || item.type === AppConstants.FIELD_TYPE.PHONE || item.type === AppConstants.FIELD_TYPE.RADIO || item.type === AppConstants.FIELD_TYPE.CHECKBOX) {
-              return (<TextInput  key={i} required={item.required} field={item.key} hideLabel={item.hideLabel} type={item.type} placeholder={item.placeholder} className={item.className || styles.fieldClassName} validateOnBlur validateOnChange />);
+              return (<TextInput maxLength={item.maxLength}  key={i} required={item.required} field={item.key} hideLabel={item.hideLabel} type={item.type} placeholder={item.placeholder} className={item.className || styles.fieldClassName} validateOnBlur validateOnChange />);
             } 
             if(item.type === AppConstants.FIELD_TYPE.SELECT) {
               return <SelectInput key={i} required={item.required} field={item.key} placeholder={item.placeholder} className={item.className || styles.fieldClassName} options={item.options} />

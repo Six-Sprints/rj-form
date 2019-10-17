@@ -36,7 +36,7 @@ export default class App extends Component {
     console.log("Click");
   }
 
-  onChange = (val) => {
+  handleChange = (val) => {
     console.log(val);
   }
 
@@ -46,7 +46,14 @@ export default class App extends Component {
     return (
       <div>
         <LoadingButton handleClick={this.handleClick} text="Button"></LoadingButton>
-        <RJForm handleChange={this.onChange} isLoading={isLoading} setFormApi={this.setFormApi} validateFields={this.validateFields} handleSubmit={this.handleSubmit} formData={DATA}></RJForm>
+        <RJForm 
+        handleChange={this.handleChange} 
+        isLoading={isLoading} 
+        setFormApi={this.setFormApi} 
+        validateFields={this.validateFields} 
+        handleSubmit={this.handleSubmit} 
+        formData={DATA}>
+        </RJForm>
       </div>
     )
   }
@@ -63,7 +70,8 @@ const DATA = {
     {
       key: 'name',
       placeholder: 'Name',
-      type: 'text'
+      type: 'text',
+      maxLength:4
     },
 
     // {

@@ -13,6 +13,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
     dontUpdate,
     labelClass,
     className,
+    maxLength,
     forwardedRef,
     format,
     hideLabel,
@@ -21,6 +22,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { error, value, touched } = fieldState;
   const { setValue, setTouched } = fieldApi;
   let ref = {};
+
   return (
     <div className="my-4">
       {!hideLabel  && (
@@ -34,6 +36,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
 
       <div>
         <input
+        maxLength={props.maxLength}
           type={props.type}
           ref={refer => {
             ref = refer;
@@ -57,7 +60,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
             setTouched();
             if (onBlur) {
               onBlur(e);
-            }
+            }220
           }}
           onFocus={e => {
             setTouched(false);
