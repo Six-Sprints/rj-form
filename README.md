@@ -18,7 +18,7 @@ import RJForm from 'rj-form'
 
 class Example extends Component {
 
-   setFormApi = api => {
+   getFormApi = api => {
     this.formApi = api; // Setting the informed API here
   }
 
@@ -50,7 +50,7 @@ class Example extends Component {
          <RJForm 
         handleChange={this.handleChange} 
         isLoading={isLoading} 
-        setFormApi={this.setFormApi} 
+        getFormApi={this.getFormApi} 
         validateFields={this.validateFields} 
         handleSubmit={this.handleSubmit} 
         formData={inputData}>
