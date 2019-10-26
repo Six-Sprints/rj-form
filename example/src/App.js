@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import RJForm, {LoadingButton} from 'rj-form';
-import { isEmail, isRequired, isPasswordAndRequired } from './util/validations';
+import React, { Component } from "react";
+import RJForm, { LoadingButton } from "rj-form";
+import { isEmail, isRequired, isPasswordAndRequired } from "./util/validations";
 
 export default class App extends Component {
-
-  state = { isLoading: false}
-
+  state = { isLoading: false };
 
   setFormApi = api => {
     this.formApi = api;
-  }
+  };
 
-
-  handleSubmit =  value => {
+  handleSubmit = value => {
     console.log(value);
-    this.setState({isLoading:true});
+    this.setState({ isLoading: true });
     this.formApi.reset();
-  }
+  };
 
   isRequired(value) {
     return value === null ||
@@ -27,51 +24,47 @@ export default class App extends Component {
   }
 
   validateFields = values => {
-    return { 
-      name: isRequired( values.name)
+    return {
+      name: isRequired(values.name)
     };
   };
 
-  handleClick  = () => {
+  handleClick = () => {
     console.log("Click");
-  }
+  };
 
-  handleChange = (val) => {
+  handleChange = val => {
     console.log(val);
-  }
-
+  };
 
   render() {
     let isLoading = this.state.isLoading;
     return (
       <div>
-        <LoadingButton handleClick={this.handleClick} text="Button"></LoadingButton>
-        <RJForm 
-        handleChange={this.handleChange} 
-        isLoading={isLoading} 
-        setFormApi={this.setFormApi} 
-        validateFields={this.validateFields} 
-        handleSubmit={this.handleSubmit} 
-        formData={DATA}>
-        </RJForm>
+        <RJForm
+          handleChange={this.handleChange}
+          isLoading={isLoading}
+          setFormApi={this.setFormApi}
+          validateFields={this.validateFields}
+          handleSubmit={this.handleSubmit}
+          formData={DATA}
+        ></RJForm>
       </div>
-    )
+    );
   }
 }
 
-
-
 const DATA = {
   styles: {
-    formClassName: 'column m-2',
-    fieldClassName: 'form-control col-md-8'
+    formClassName: "column m-2",
+    fieldClassName: "form-control col-md-8"
   },
   fields: [
     {
-      key: 'name',
-      placeholder: 'Name',
-      type: 'text',
-      maxLength:4
+      key: "name",
+      placeholder: "Name",
+      type: "text",
+      maxLength: 4
     },
 
     // {
@@ -101,10 +94,10 @@ const DATA = {
     //   ]
     // },
     {
-      key: 'button',
-      text: 'Submit',
-      type: 'submit',
-      className: 'col-md-8'
+      key: "button",
+      text: "Submit",
+      type: "submit",
+      className: "col-md-8"
     }
-  ],
+  ]
 };

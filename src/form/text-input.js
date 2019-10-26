@@ -1,6 +1,5 @@
-import React from 'react'
+import React from "react";
 import { asField } from "informed";
-
 
 const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
   const {
@@ -24,8 +23,8 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
   let ref = {};
 
   return (
-    <div className="my-4">
-      {!hideLabel  && (
+    <div className="col-md-6 my-4">
+      {!hideLabel && (
         <div className={labelClass}>
           <label>
             {props.placeholder}{" "}
@@ -36,12 +35,16 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
 
       <div>
         <input
-        maxLength={props.maxLength}
+          maxLength={props.maxLength}
           type={props.type}
           ref={refer => {
             ref = refer;
           }}
-          className={props.type === "radio" || props.type === "checkbox" ? "" : className || "form-control col-sm"}
+          className={
+            props.type === "radio" || props.type === "checkbox"
+              ? ""
+              : className || "form-control col-sm"
+          }
           value={value || ""}
           {...rest}
           onChange={e => {
@@ -60,7 +63,8 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
             setTouched();
             if (onBlur) {
               onBlur(e);
-            }220
+            }
+            220;
           }}
           onFocus={e => {
             setTouched(false);
@@ -69,7 +73,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
             }
           }}
         />
-     
+
         {touched && error && (
           <span
             onClick={() => {
