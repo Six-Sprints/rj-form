@@ -1,6 +1,6 @@
 {
   "name": "rj-form",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A react library for creating forms using a JSON schema",
   "author": "drudrapaul",
   "license": "MIT",
@@ -27,6 +27,7 @@
     "react-dom": "^15.0.0 || ^16.0.0",
     "informed": "^2.11.9",
     "bootstrap": "^4.3.1",
+    "react-datepicker": "^2.9.6",
     "react-select": "^3.0.8"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "informed": "^2.11.9",
+    "react-datepicker": "^2.9.6",
     "react-select": "^3.0.8"
   }
 }

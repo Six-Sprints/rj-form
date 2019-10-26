@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import RJForm, { LoadingButton } from "rj-form";
-import { isEmail, isRequired, isPasswordAndRequired } from "./util/validations";
+import RJForm from "rj-form";
+import { isRequired } from "./util/validations";
 
 export default class App extends Component {
   state = { isLoading: false };
@@ -11,7 +11,6 @@ export default class App extends Component {
 
   handleSubmit = value => {
     console.log(value);
-    this.setState({ isLoading: true });
     this.formApi.reset();
   };
 
@@ -25,7 +24,9 @@ export default class App extends Component {
 
   validateFields = values => {
     return {
-      name: isRequired(values.name)
+      name: isRequired(values.name),
+      fruit: isRequired(values.fruit),
+      date: isRequired(values.date)
     };
   };
 
@@ -33,9 +34,7 @@ export default class App extends Component {
     console.log("Click");
   };
 
-  handleChange = val => {
-    console.log(val);
-  };
+  handleChange = val => {};
 
   render() {
     let isLoading = this.state.isLoading;
@@ -44,7 +43,7 @@ export default class App extends Component {
         <RJForm
           handleChange={this.handleChange}
           isLoading={isLoading}
-          setFormApi={this.setFormApi}
+          getFormApi={this.setFormApi}
           validateFields={this.validateFields}
           handleSubmit={this.handleSubmit}
           formData={DATA}
@@ -66,6 +65,11 @@ const DATA = {
       type: "text",
       maxLength: 4
     },
+    {
+      key: "date",
+      placeholder: "Date",
+      type: "date"
+    },
 
     // {
     //   key: 'email',
@@ -82,17 +86,17 @@ const DATA = {
     //   placeholder: 'Password',
     //   type: 'password'
     // },
-    // {
-    //   key: 'fruit',
-    //   placeholder: 'Select a fruit',
-    //   type: 'select',
-    //   className: 'col-md-5',
-    //   options: [
-    //     { value: 'appple', label: 'Apple' },
-    //     { value: 'orange', label: 'Orange' },
-    //     { value: 'pineapple', label: 'Pineapple' }
-    //   ]
-    // },
+    {
+      key: "fruit",
+      placeholder: "Select a fruit",
+      type: "select",
+      className: "col-md-5",
+      options: [
+        { value: "appple", label: "Apple" },
+        { value: "orange", label: "Orange" },
+        { value: "pineapple", label: "Pineapple" }
+      ]
+    },
     {
       key: "button",
       text: "Submit",

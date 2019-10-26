@@ -1,0 +1,14 @@
+/* add css styles here (optional) */
+
+.no-fill-warning {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 40px;
+  color: red;
+  background: #fff;
+  width: 99%;
+  left: 1px;
+  padding-left: 15px;
+  font-size: 12px;
+}

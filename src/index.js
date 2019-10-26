@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
+import "react-datepicker/dist/react-datepicker.css";
 import { Form } from "informed";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
@@ -7,6 +9,7 @@ import SelectInput from "./form/select-input";
 import { AppConstants } from "./util/app-constants";
 import Button from "./form/button";
 import TextAreaInput from "./form/text-area";
+import DateInput from "./form/date-input";
 
 class RJForm extends Component {
   static propTypes = {
@@ -61,6 +64,17 @@ class RJForm extends Component {
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
                   options={item.options}
+                />
+              );
+            }
+            if (item.type === AppConstants.FIELD_TYPE.DATE) {
+              return (
+                <DateInput
+                  key={i}
+                  required={item.required}
+                  field={item.key}
+                  placeholder={item.placeholder}
+                  className={item.className || styles.fieldClassName}
                 />
               );
             }

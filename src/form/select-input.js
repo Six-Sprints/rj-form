@@ -4,11 +4,19 @@ import Select from "react-select";
 
 const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { setValue } = fieldApi;
-  const { options, placeholder, onChange, showError, ...rest } = props;
+  const { error, value, touched } = fieldState;
+  const {
+    options,
+    placeholder,
+    onChange,
+    showError,
+    inlineErrorStyle,
+    ...rest
+  } = props;
 
   let selectedVal = null;
-  if (fieldState.value) {
-    selectedVal = options.filter(option => option.value === fieldState.value);
+  if (value) {
+    selectedVal = options.filter(option => option.value === value);
   }
   return (
     <div className="col-md-6 my-4">
@@ -28,6 +36,17 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
         placeholder={placeholder || "Select One"}
         {...rest}
       />
+      {touched && error && (
+        <span
+          onClick={() => {
+            ref.focus();
+          }}
+          className="no-fill-warning"
+          style={inlineErrorStyle}
+        >
+          {error}
+        </span>
+      )}
     </div>
   );
 });
