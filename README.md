@@ -101,7 +101,8 @@ const inputData = {
       key: 'button',
       text: 'Submit',
       type: 'submit',
-      className: 'col-md-8'
+      className: 'col-md-8',
+      btnClassName: 'btn btn-primary'
     }
   ],
 };

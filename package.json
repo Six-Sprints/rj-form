@@ -1,6 +1,6 @@
 {
   "name": "rj-form",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A react library for creating forms using a JSON schema",
   "author": "drudrapaul",
   "license": "MIT",
