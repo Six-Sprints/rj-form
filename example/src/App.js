@@ -55,7 +55,8 @@ export default class App extends Component {
 const DATA = {
   styles: {
     formClassName: "column m-2",
-    fieldClassName: "form-control col-md-8"
+    fieldClassName: "form-control",
+    containerClassName: "w-50 my-4"
   },
   fields: [
     {

@@ -111,7 +111,9 @@ class RJForm extends Component {
                   text={item.text}
                   type={item.type}
                   className={item.className}
-                  containerClassName={item.containerClassName}
+                  containerClassName={
+                    item.containerClassName || styles.containerClassName
+                  }
                 />
               );
             }
