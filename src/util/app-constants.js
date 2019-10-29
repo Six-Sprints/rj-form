@@ -1,6 +1,7 @@
 export const AppConstants = {
   FIELD_TYPE: {
     SELECT: "select",
+    ASYNC_SELECT: "async-select",
     DATE: "date",
     TEXT: "text",
     TEXT_AREA: "text-area",
