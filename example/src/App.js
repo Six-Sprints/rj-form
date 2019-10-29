@@ -10,7 +10,6 @@ export default class App extends Component {
   };
 
   handleSubmit = value => {
-    console.log(value);
     this.formApi.reset();
   };
 

@@ -48,6 +48,7 @@ class RJForm extends Component {
                   field={item.key}
                   hideLabel={item.hideLabel}
                   type={item.type}
+                  containerClassName={item.containerClassName}
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
                   validateOnBlur
@@ -61,6 +62,7 @@ class RJForm extends Component {
                   key={i}
                   required={item.required}
                   field={item.key}
+                  containerClassName={item.containerClassName}
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
                   options={item.options}
@@ -71,7 +73,9 @@ class RJForm extends Component {
               return (
                 <DateInput
                   key={i}
+                  dateFormat="DD/MM/YYYY"
                   required={item.required}
+                  containerClassName={item.containerClassName}
                   field={item.key}
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
@@ -101,7 +105,7 @@ class RJForm extends Component {
                   text={item.text}
                   type={item.type}
                   className={item.className}
-                  btnClassName={item.btnClassName}
+                  containerClassName={item.containerClassName}
                 />
               );
             }

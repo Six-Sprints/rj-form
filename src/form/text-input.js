@@ -10,6 +10,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
     initialValue,
     inlineErrorStyle,
     dontUpdate,
+    containerClassName,
     labelClass,
     className,
     maxLength,
@@ -23,7 +24,7 @@ const TextInput = asField(({ fieldState, fieldApi, ...props }) => {
   let ref = {};
 
   return (
-    <div className="col-md-6 my-4">
+    <div className={containerClassName}>
       {!hideLabel && (
         <div className={labelClass}>
           <label>

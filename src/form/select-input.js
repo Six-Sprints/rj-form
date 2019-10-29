@@ -10,6 +10,7 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
     placeholder,
     onChange,
     showError,
+    containerClassName,
     inlineErrorStyle,
     ...rest
   } = props;
@@ -19,7 +20,7 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
     selectedVal = options.filter(option => option.value === value);
   }
   return (
-    <div className="col-md-6 my-4">
+    <div className={containerClassName}>
       <div className={props.labelClass}>
         <label>{props.placeholder}</label>
       </div>

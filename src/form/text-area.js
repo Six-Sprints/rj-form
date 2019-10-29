@@ -10,6 +10,7 @@ const TextAreaInput = asField(({ fieldState, fieldApi, ...props }) => {
     hideTick,
     inlineImgStyle,
     inlineErrorStyle,
+    containerClassName,
     initialValue,
     dontUpdate,
     className,
@@ -70,7 +71,6 @@ const TextAreaInput = asField(({ fieldState, fieldApi, ...props }) => {
             {error}
           </span>
         )}
-        
       </div>
     </div>
   );

@@ -8,19 +8,14 @@ const Button = ({
   size = 25,
   className,
   style,
-  btnClassName,
+  containerClassName,
   buttonStyle,
   handleClick,
   ...rest
 }) => {
   return (
-    <div className={className}>
-      <button
-        onClick={handleClick}
-        type={type}
-        className={btnClassName}
-        {...rest}
-      >
+    <div className={containerClassName}>
+      <button onClick={handleClick} type={type} className={className} {...rest}>
         {isLoading ? (
           <span
             className="spinner-border spinner-border-sm"

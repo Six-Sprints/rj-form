@@ -5,10 +5,18 @@ import DatePicker from "react-datepicker";
 const DateInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { error, value, touched } = fieldState;
   const { setValue } = fieldApi;
-  const { placeholder, onChange, showError, inlineErrorStyle, ...rest } = props;
+  const {
+    placeholder,
+    onChange,
+    showError,
+    dateFormat,
+    containerClassName,
+    inlineErrorStyle,
+    ...rest
+  } = props;
 
   return (
-    <div className="col-md-6 my-4">
+    <div className={containerClassName}>
       <div className={props.labelClass}>
         <label>{props.placeholder}</label>
       </div>
@@ -19,7 +27,9 @@ const DateInput = asField(({ fieldState, fieldApi, ...props }) => {
         value={value}
         dropdownMode="select"
         selected={value}
-        onChange={date => setValue(date)}
+        onChange={date => {
+          setValue(date);
+        }}
         minDate={new Date()}
         placeholderText={placeholder}
         {...rest}
