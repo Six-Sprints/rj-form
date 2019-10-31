@@ -1,6 +1,5 @@
 import React from "react";
-import { asField } from "informed";
-import Select from "react-select";
+import { Select, asField } from "informed";
 
 const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { setValue } = fieldApi;
@@ -19,6 +18,8 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
   if (value) {
     selectedVal = options.filter(option => option.value === value);
   }
+
+  console.log(options);
   return (
     <div className={containerClassName}>
       <div className={props.labelClass}>
@@ -33,10 +34,17 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
             onChange(option.value);
           }
         }}
-        options={options}
         placeholder={placeholder || "Select One"}
         {...rest}
-      />
+      >
+        {(options || []).map((op, idx) => {
+          return (
+            <option key={idx} value={op.value}>
+              {op.label}
+            </option>
+          );
+        })}
+      </Select>
       {touched && error && (
         <span
           onClick={() => {

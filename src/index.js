@@ -24,6 +24,8 @@ class RJForm extends Component {
   render() {
     const { fields, styles } = this.props.formData;
     const isLoading = this.props.isLoading;
+    const loadOptions = this.props.loadOptions;
+
     return (
       <Form
         getApi={this.props.getFormApi}
@@ -85,7 +87,7 @@ class RJForm extends Component {
                   }
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
-                  options={item.options}
+                  loadOptions={item.options}
                 />
               );
             }

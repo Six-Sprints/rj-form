@@ -6,7 +6,7 @@ const AsyncSelectInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { setValue } = fieldApi;
   const { error, value, touched } = fieldState;
   const {
-    options,
+    loadOptions,
     placeholder,
     onChange,
     showError,
@@ -25,9 +25,7 @@ const AsyncSelectInput = asField(({ fieldState, fieldApi, ...props }) => {
         <label>{props.placeholder}</label>
       </div>
       <AsyncSelect
-        cacheOptions
-        defaultOptions
-        loadOptions={options}
+        loadOptions={loadOptions}
         className={props.className}
         value={selectedVal}
         onChange={option => {

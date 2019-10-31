@@ -5,6 +5,10 @@ import { isRequired } from "./util/validations";
 export default class App extends Component {
   state = { isLoading: false };
 
+  constructor(props) {
+    super(props);
+  }
+
   setFormApi = api => {
     this.formApi = api;
   };
@@ -38,16 +42,15 @@ export default class App extends Component {
   render() {
     let isLoading = this.state.isLoading;
     return (
-      <div>
-        <RJForm
-          handleChange={this.handleChange}
-          isLoading={isLoading}
-          getFormApi={this.setFormApi}
-          validateFields={this.validateFields}
-          handleSubmit={this.handleSubmit}
-          formData={DATA}
-        ></RJForm>
-      </div>
+      <RJForm
+        loadOptions={this.getOptions}
+        handleChange={this.handleChange}
+        isLoading={isLoading}
+        getFormApi={this.setFormApi}
+        validateFields={this.validateFields}
+        handleSubmit={this.handleSubmit}
+        formData={DATA}
+      ></RJForm>
     );
   }
 }
@@ -91,11 +94,7 @@ const DATA = {
       placeholder: "Select a fruit",
       type: "select",
       className: "col-md-5",
-      options: [
-        { value: "appple", label: "Apple" },
-        { value: "orange", label: "Orange" },
-        { value: "pineapple", label: "Pineapple" }
-      ]
+      options: [{ value: "1", label: "Apple" }, { value: "2", label: "Orange" }]
     },
     {
       key: "button",
