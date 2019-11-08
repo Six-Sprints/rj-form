@@ -23,9 +23,9 @@ class RJForm extends Component {
 
   render() {
     const { fields, styles } = this.props.formData;
+    const { options } = this.props.options;
     const isLoading = this.props.isLoading;
-    const loadOptions = this.props.loadOptions;
-
+    console.log(options || []);
     return (
       <Form
         getApi={this.props.getFormApi}
@@ -37,6 +37,7 @@ class RJForm extends Component {
           {fields.map((item, i) => {
             if (
               item.type === AppConstants.FIELD_TYPE.TEXT ||
+              item.type === AppConstants.FIELD_TYPE.NUMBER ||
               item.type === AppConstants.FIELD_TYPE.EMAIL ||
               item.type === AppConstants.FIELD_TYPE.PASSWORD ||
               item.type === AppConstants.FIELD_TYPE.PHONE ||
@@ -61,7 +62,7 @@ class RJForm extends Component {
                 />
               );
             }
-            if (item.type === AppConstants.FIELD_TYPE.SELECT) {
+            if (item.type === AppConstants.FIELD_TYPE.SELECT && options) {
               return (
                 <SelectInput
                   key={i}
@@ -72,7 +73,7 @@ class RJForm extends Component {
                   }
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
-                  options={item.options}
+                  options={options}
                 />
               );
             }

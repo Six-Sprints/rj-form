@@ -3,6 +3,7 @@ export const AppConstants = {
     SELECT: "select",
     ASYNC_SELECT: "async-select",
     DATE: "date",
+    NUMBER: "number",
     TEXT: "text",
     TEXT_AREA: "text-area",
     EMAIL: "email",
