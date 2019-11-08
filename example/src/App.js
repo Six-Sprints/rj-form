@@ -5,19 +5,6 @@ import { isRequired } from "./util/validations";
 export default class App extends Component {
   state = { isLoading: false, options: [] };
 
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    fetch("https://reqres.in/api/users?page=2")
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ options: data["data"] });
-        console.log(this.state.options);
-      });
-  }
-
   setFormApi = api => {
     this.formApi = api;
   };
@@ -50,22 +37,17 @@ export default class App extends Component {
 
   render() {
     let isLoading = this.state.isLoading;
-    const { options } = this.state.options;
-    if (options) {
-      return (
-        <RJForm
-          options={options}
-          handleChange={this.handleChange}
-          isLoading={isLoading}
-          getFormApi={this.setFormApi}
-          validateFields={this.validateFields}
-          handleSubmit={this.handleSubmit}
-          formData={DATA}
-        ></RJForm>
-      );
-    } else {
-      return <div></div>;
-    }
+
+    return (
+      <RJForm
+        handleChange={this.handleChange}
+        isLoading={isLoading}
+        getFormApi={this.setFormApi}
+        validateFields={this.validateFields}
+        handleSubmit={this.handleSubmit}
+        formData={DATA}
+      ></RJForm>
+    );
   }
 }
 
@@ -85,7 +67,7 @@ const DATA = {
     {
       key: "date",
       placeholder: "Date",
-      type: "date"
+      type: "number"
     },
 
     // {
