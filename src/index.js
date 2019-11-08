@@ -9,7 +9,7 @@ import SelectInput from "./form/select-input";
 import { AppConstants } from "./util/app-constants";
 import Button from "./form/button";
 import TextAreaInput from "./form/text-area";
-import DateInput from "./form/date-input";
+import DateInput from "./form/date";
 import AsyncSelectInput from "./form/async-select-input";
 
 class RJForm extends Component {

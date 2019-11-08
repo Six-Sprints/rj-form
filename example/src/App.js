@@ -10,6 +10,7 @@ export default class App extends Component {
   };
 
   handleSubmit = value => {
+    console.log(value);
     this.formApi.reset();
   };
 
@@ -67,7 +68,7 @@ const DATA = {
     {
       key: "date",
       placeholder: "Date",
-      type: "number"
+      type: "date"
     },
 
     // {
@@ -85,12 +86,6 @@ const DATA = {
     //   placeholder: 'Password',
     //   type: 'password'
     // },
-    {
-      key: "fruit",
-      placeholder: "Select a fruit",
-      type: "select",
-      className: "col-md-5"
-    },
     {
       key: "button",
       text: "Submit",
