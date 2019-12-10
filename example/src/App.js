@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import RJForm from "rj-form";
 import { isRequired } from "./util/validations";
+import Api from "./util/api";
 
 export default class App extends Component {
   state = { isLoading: false, options: [] };
+
+  componentDidMount() {
+    Api.get("posts").subscribe(
+      data => {
+        console.log(data.data);
+        this.setState({ options: data.data });
+      },
+      error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      }
+    );
+  }
 
   setFormApi = api => {
     this.formApi = api;
@@ -41,6 +56,7 @@ export default class App extends Component {
 
     return (
       <RJForm
+        options={this.state.options}
         handleChange={this.handleChange}
         isLoading={isLoading}
         getFormApi={this.setFormApi}
@@ -69,6 +85,12 @@ const DATA = {
       key: "date",
       placeholder: "Date",
       type: "date"
+    },
+    {
+      key: "country",
+      type: "select",
+      labelKey: "userId",
+      valueKey: "id"
     },
 
     // {

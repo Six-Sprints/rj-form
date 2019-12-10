@@ -10,7 +10,7 @@ import { AppConstants } from "./util/app-constants";
 import Button from "./form/button";
 import TextAreaInput from "./form/text-area";
 import DateInput from "./form/date";
-import AsyncSelectInput from "./form/async-select-input";
+import FileUpload from "./form/file-upload";
 
 class RJForm extends Component {
   static propTypes = {
@@ -22,8 +22,9 @@ class RJForm extends Component {
   }
 
   render() {
+    const { options, isLoading, isUploadLoading } = this.props;
     const { fields, styles } = this.props.formData;
-    const isLoading = this.props.isLoading;
+
     return (
       <Form
         getApi={this.props.getFormApi}
@@ -63,6 +64,8 @@ class RJForm extends Component {
             if (item.type === AppConstants.FIELD_TYPE.SELECT) {
               return (
                 <SelectInput
+                  labelKey={item.labelKey}
+                  valueKey={item.valueKey}
                   key={i}
                   required={item.required}
                   field={item.key}
@@ -71,25 +74,14 @@ class RJForm extends Component {
                   }
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
-                  options={item.options}
+                  options={options}
                 />
               );
             }
-            if (item.type === AppConstants.FIELD_TYPE.ASYNC_SELECT) {
-              return (
-                <AsyncSelectInput
-                  key={i}
-                  required={item.required}
-                  field={item.key}
-                  containerClassName={
-                    item.containerClassName || styles.containerClassName
-                  }
-                  placeholder={item.placeholder}
-                  className={item.className || styles.fieldClassName}
-                  loadOptions={item.options}
-                />
-              );
+            if (item.type === AppConstants.FIELD_TYPE.FILE) {
+              return <FileUpload />;
             }
+
             if (item.type === AppConstants.FIELD_TYPE.DATE) {
               return (
                 <DateInput

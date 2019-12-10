@@ -9,6 +9,8 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
     placeholder,
     onChange,
     showError,
+    labelKey,
+    valueKey,
     containerClassName,
     inlineErrorStyle,
     ...rest
@@ -39,8 +41,8 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
       >
         {(options || []).map((op, idx) => {
           return (
-            <option key={idx} value={op.value}>
-              {op.label}
+            <option key={idx} value={op[valueKey]}>
+              {op[labelKey]}
             </option>
           );
         })}
