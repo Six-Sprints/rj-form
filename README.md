@@ -13,101 +13,128 @@ npm install --save rj-form
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-import RJForm from 'rj-form'
+import React, { Component } from "react";
+import RJForm from "rj-form";
+import { isRequired } from "./util/validations";
+import Api from "./util/api";
 
-class Example extends Component {
+export default class App extends Component {
+  state = { isLoading: false, options: [] };
 
-   getFormApi = api => {
-    this.formApi = api; // Setting the informed API here
+  componentDidMount() {
+    Api.get("posts").subscribe(
+      data => {
+        console.log(data.data);
+        this.setState({ options: data.data });
+      },
+      error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      }
+    );
   }
 
+  handleUpload = val => {
+    console.log(val);
+  };
 
-  handleSubmit =  value => {
+  setFormApi = api => {
+    this.formApi = api;
+  };
+
+  handleSubmit = value => {
     console.log(value);
-    this.formApi.reset(); // Resetting the form using the informed API
-  }
+    this.formApi.reset();
+  };
 
+  isRequired(value) {
+    return value === null ||
+      value === undefined ||
+      ("" + value).trim().length <= 0
+      ? "This field is required"
+      : undefined;
+  }
 
   validateFields = values => {
-    return { 
-      name: isRequired( values.name )
+    return {
+      name: isRequired(values.name),
+      date: isRequired(values.date),
+      city: isRequired(values.city)
     };
   };
 
-  
-  handleSubmit(value) {
-      console.log(value);
-  }
+  handleClick = () => {
+    console.log("Click");
+  };
 
-  handleChange = (val) => {
-    console.log(val);
-  }
-  
-  
-  render () {
-      return (
-         <RJForm 
-        handleChange={this.handleChange} 
-        isLoading={isLoading} 
-        getFormApi={this.getFormApi} 
-        validateFields={this.validateFields} 
-        handleSubmit={this.handleSubmit} 
-        formData={inputData}>
-        </RJForm>
-      )
+  handleChange = val => {};
+
+  render() {
+    let isLoading = this.state.isLoading;
+
+    return (
+      <RJForm
+        handleUpload={this.handleUpload}
+        options={this.state.options}
+        handleChange={this.handleChange}
+        isLoading={isLoading}
+        getFormApi={this.setFormApi}
+        validateFields={this.validateFields}
+        handleSubmit={this.handleSubmit}
+        formData={DATA}
+      ></RJForm>
+    );
   }
 }
 
-const inputData = {
+const DATA = {
   styles: {
-    formClassName: 'column m-2',
-    fieldClassName: 'form-control col-md-8'
+    formClassName: "column m-2",
+    fieldClassName: "form-control",
+    containerClassName: "w-100 my-4"
   },
   fields: [
     {
-      key: 'name',
-      placeholder: 'Name',
-      type: 'text'
+      key: "name",
+      placeholder: "Name",
+      type: "text",
+      maxLength: 4
+    },
+    {
+      key: "date",
+      placeholder: "Date",
+      type: "date",
+      className: "form-control"
+    },
+    {
+      key: "country",
+      type: "select",
+      labelKey: "userId",
+      valueKey: "id"
+    },
+    {
+      key: "city",
+      type: "select",
+      placeholder: "City",
+      valueKey: "name",
+      labelKey: "name",
+      options: [{ name: "Delhi" }, { name: "Kolkata" }]
     },
 
     {
-      key: 'email',
-      placeholder: 'Email',
-      type: 'email',
+      key: "desc",
+      type: "text-area"
     },
+
     {
-      key: 'phone',
-      placeholder: 'Phone',
-      type: 'tel'
-    },
-    {
-      key: 'password',
-      placeholder: 'Password',
-      type: 'password'
-    },
-    {
-      key: 'fruit',
-      placeholder: 'Select a fruit',
-      type: 'select',
-      className: 'col-md-5',
-      options: [
-        { value: 'appple', label: 'Apple' },
-        { value: 'orange', label: 'Orange' },
-        { value: 'pineapple', label: 'Pineapple' }
-      ]
-    },
-    {
-      key: 'button',
-      text: 'Submit',
-      type: 'submit',
-      className: 'col-md-8',
-      btnClassName: 'btn btn-primary'
+      key: "button",
+      text: "Submit",
+      type: "submit",
+      className: "col-md-8"
     }
-  ],
+  ]
 };
-
-
 ```
 
 ## License

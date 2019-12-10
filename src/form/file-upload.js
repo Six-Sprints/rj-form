@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import Loader from "../loader";
-import Api from "../../utils/api";
-import { DEFAULT_ERROR_CALLBACK } from "../../utils/app-util";
-import { t } from "../../utils/i18n";
 
 class FileUpload extends Component {
   constructor(props) {
@@ -33,7 +29,7 @@ class FileUpload extends Component {
           ref="file"
           onChange={this.handleChange}
         />
-        {t(text)}
+        {text}
       </div>
     );
   }

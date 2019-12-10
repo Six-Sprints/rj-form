@@ -9,8 +9,8 @@ import SelectInput from "./form/select-input";
 import { AppConstants } from "./util/app-constants";
 import Button from "./form/button";
 import TextAreaInput from "./form/text-area";
-import DateInput from "./form/date";
 import FileUpload from "./form/file-upload";
+import CustomDatePicker from "./form/date";
 
 class RJForm extends Component {
   static propTypes = {
@@ -22,7 +22,13 @@ class RJForm extends Component {
   }
 
   render() {
-    const { options, isLoading, isUploadLoading } = this.props;
+    const {
+      options,
+      isLoading,
+      isUploadLoading,
+      imageUrl,
+      handleUpload
+    } = this.props;
     const { fields, styles } = this.props.formData;
 
     return (
@@ -74,19 +80,39 @@ class RJForm extends Component {
                   }
                   placeholder={item.placeholder}
                   className={item.className || styles.fieldClassName}
-                  options={options}
+                  options={item.options || options}
+                  validateOnBlur
+                  validateOnChange
                 />
               );
             }
             if (item.type === AppConstants.FIELD_TYPE.FILE) {
-              return <FileUpload />;
+              return (
+                <div key={i} className="col-md-6 mt-5">
+                  <img
+                    className="mr-4"
+                    src={
+                      imageUrl ||
+                      "http://placehold.jp/c5d0db/fafafa/100x100.png?text=Image"
+                    }
+                    width="50"
+                    alt="logo"
+                  />
+                  <FileUpload
+                    handleUpload={handleUpload}
+                    text={item.text}
+                    className={item.className}
+                    isLoading={isUploadLoading}
+                  />
+                </div>
+              );
             }
 
             if (item.type === AppConstants.FIELD_TYPE.DATE) {
               return (
-                <DateInput
+                <CustomDatePicker
                   key={i}
-                  dateFormat="DD/MM/YYYY"
+                  format={item.format}
                   required={item.required}
                   containerClassName={
                     item.containerClassName || styles.containerClassName
@@ -101,10 +127,18 @@ class RJForm extends Component {
               return (
                 <TextAreaInput
                   key={i}
+                  width={item.width}
+                  height={item.height}
                   required={item.required}
-                  text={item.text}
+                  field={item.key}
                   type={item.type}
-                  className={item.className}
+                  containerClassName={
+                    item.containerClassName || styles.containerClassName
+                  }
+                  placeholder={item.placeholder}
+                  className={item.className || styles.fieldClassName}
+                  validateOnBlur
+                  validateOnChange
                 />
               );
             }

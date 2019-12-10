@@ -3,7 +3,7 @@ import { asField } from "informed";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 
-const DateInput = asField(({ fieldState, fieldApi, ...props }) => {
+const CustomDatePicker = asField(({ fieldState, fieldApi, ...props }) => {
   const {
     required,
     onChange,
@@ -11,15 +11,27 @@ const DateInput = asField(({ fieldState, fieldApi, ...props }) => {
     onFocus,
     containerClassName,
     labelClass,
+    placeholder,
+    showTime,
+    inlineErrorStyle,
+    minDate,
     className,
-    maxLength,
+    maxDate,
     format,
     hideLabel,
     ...rest
   } = props;
 
   const { error, value, touched } = fieldState;
-  const { setValue, setTouched } = fieldApi;
+  const { setValue } = fieldApi;
+
+  const DATE_FORMAT = "DD/MM/YYYY";
+  const DATE_TIME_FORMAT = "DD/MM/YYYY HH:mm:ss";
+  let dateFormat = showTime ? DATE_TIME_FORMAT : DATE_FORMAT;
+  const shouldParse = !!value && ("" + value).indexOf("/") === -1;
+  const dispValue = shouldParse
+    ? moment(value).format(dateFormat)
+    : value || "";
 
   return (
     <div className={containerClassName}>
@@ -32,19 +44,39 @@ const DateInput = asField(({ fieldState, fieldApi, ...props }) => {
         </div>
       )}
 
+      <DatePicker
+        {...rest}
+        value={dispValue}
+        className={className}
+        placeholderText={placeholder}
+        showTimeSelect={showTime}
+        timeFormat="p"
+        timeIntervals={15}
+        maxDate={maxDate}
+        minDate={minDate}
+        onChange={date =>
+          setValue(
+            moment(date, dateFormat)
+              .toDate()
+              .getTime()
+          )
+        }
+      />
       <div>
-        <DatePicker
-          showTimeSelect
-          timeFormat="p"
-          timeIntervals={15}
-          value={value}
-          onChange={date =>
-            setValue(moment(date).format("DD/MM/YYYY HH:mm:ss"))
-          }
-        />
+        {touched && error && (
+          <span
+            onClick={() => {
+              ref.focus();
+            }}
+            className="no-fill-warning"
+            style={inlineErrorStyle}
+          >
+            {error}
+          </span>
+        )}
       </div>
     </div>
   );
 });
 
-export default DateInput;
+export default CustomDatePicker;

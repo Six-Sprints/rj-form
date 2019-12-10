@@ -12,6 +12,8 @@ const TextAreaInput = asField(({ fieldState, fieldApi, ...props }) => {
     inlineErrorStyle,
     containerClassName,
     initialValue,
+    width,
+    height,
     dontUpdate,
     className,
     forwardedRef,
@@ -23,13 +25,10 @@ const TextAreaInput = asField(({ fieldState, fieldApi, ...props }) => {
   let ref = {};
   return (
     <div className="flex-r">
-      <div style={{ position: "relative", width: "100%", height: "45vh" }}>
+      <div style={{ position: "relative", width: width, height: height }}>
         <textarea
           ref={refer => {
             ref = refer;
-            if (forwardedRef) {
-              forwardedRef(refer);
-            }
           }}
           style={{ width: "100%", height: "100%", fontSize: 16 }}
           className={className || "theme login"}

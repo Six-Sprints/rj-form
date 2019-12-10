@@ -20,6 +20,10 @@ export default class App extends Component {
     );
   }
 
+  handleUpload = val => {
+    console.log(val);
+  };
+
   setFormApi = api => {
     this.formApi = api;
   };
@@ -40,8 +44,8 @@ export default class App extends Component {
   validateFields = values => {
     return {
       name: isRequired(values.name),
-      fruit: isRequired(values.fruit),
-      date: isRequired(values.date)
+      date: isRequired(values.date),
+      city: isRequired(values.city)
     };
   };
 
@@ -56,6 +60,7 @@ export default class App extends Component {
 
     return (
       <RJForm
+        handleUpload={this.handleUpload}
         options={this.state.options}
         handleChange={this.handleChange}
         isLoading={isLoading}
@@ -72,7 +77,7 @@ const DATA = {
   styles: {
     formClassName: "column m-2",
     fieldClassName: "form-control",
-    containerClassName: "w-50 my-4"
+    containerClassName: "w-100 my-4"
   },
   fields: [
     {
@@ -84,7 +89,8 @@ const DATA = {
     {
       key: "date",
       placeholder: "Date",
-      type: "date"
+      type: "date",
+      className: "form-control"
     },
     {
       key: "country",
@@ -92,22 +98,20 @@ const DATA = {
       labelKey: "userId",
       valueKey: "id"
     },
+    {
+      key: "city",
+      type: "select",
+      placeholder: "City",
+      valueKey: "name",
+      labelKey: "name",
+      options: [{ name: "Delhi" }, { name: "Kolkata" }]
+    },
 
-    // {
-    //   key: 'email',
-    //   placeholder: 'Email',
-    //   type: 'email',
-    // },
-    // {
-    //   key: 'phone',
-    //   placeholder: 'Phone',
-    //   type: 'tel'
-    // },
-    // {
-    //   key: 'password',
-    //   placeholder: 'Password',
-    //   type: 'password'
-    // },
+    {
+      key: "desc",
+      type: "text-area"
+    },
+
     {
       key: "button",
       text: "Submit",
