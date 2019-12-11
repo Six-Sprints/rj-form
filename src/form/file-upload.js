@@ -14,7 +14,12 @@ class FileUpload extends Component {
   render() {
     const { text, className, isLoading } = this.props;
     if (isLoading) {
-      return <Loader size={28} />;
+      return (
+        <span
+          className="spinner-border spinner-border-sm"
+          aria-hidden="true"
+        ></span>
+      );
     }
     return (
       <div
