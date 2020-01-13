@@ -61,7 +61,6 @@ export default class App extends Component {
     return (
       <RJForm
         handleUpload={this.handleUpload}
-        options={this.state.options}
         handleChange={this.handleChange}
         isLoading={isLoading}
         getFormApi={this.setFormApi}
@@ -84,6 +83,7 @@ const DATA = {
       key: "name",
       placeholder: "Name",
       type: "text",
+      required: true,
       maxLength: 4
     },
     {
@@ -92,18 +92,14 @@ const DATA = {
       type: "date",
       className: "form-control"
     },
-    {
-      key: "country",
-      type: "select",
-      labelKey: "userId",
-      valueKey: "id"
-    },
+
     {
       key: "city",
       type: "select",
       placeholder: "City",
       valueKey: "name",
       labelKey: "name",
+      required: true,
       options: [{ name: "Delhi" }, { name: "Kolkata" }]
     },
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, asField, Option } from "informed";
+import { asField } from "informed";
 
 const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
   const { setValue } = fieldApi;
@@ -11,42 +11,50 @@ const SelectInput = asField(({ fieldState, fieldApi, ...props }) => {
     showError,
     labelKey,
     valueKey,
+    required,
+    forwardedRef,
     containerClassName,
     inlineErrorStyle,
     ...rest
   } = props;
 
-  let selectedVal = null;
+  let selectedVal = "";
   if (value) {
     selectedVal = options.filter(option => option[valueKey] === value);
   }
-
+  let ref = {};
   return (
     <div className={containerClassName}>
       <div className={props.labelClass}>
-        <label>{props.placeholder}</label>
+        <label>
+          {" "}
+          {props.placeholder}{" "}
+          {required ? <span className="required">*</span> : ""}
+        </label>
       </div>
-      <Select
+      <select
         className={props.className}
-        value={selectedVal}
+        value={selectedVal[valueKey]}
         onChange={option => {
-          console.log(option, "SELECT");
           setValue(option && option.target.value);
           if (onChange) {
             onChange(option.target.value);
           }
         }}
         placeholder={placeholder || "Select One"}
+        ref={refer => {
+          ref = refer;
+        }}
         {...rest}
       >
         {(options || []).map((op, idx) => {
           return (
-            <Option key={idx} value={op[valueKey]}>
+            <option key={idx} value={op[valueKey]}>
               {op[labelKey]}
-            </Option>
+            </option>
           );
         })}
-      </Select>
+      </select>
       {touched && error && (
         <span
           onClick={() => {
